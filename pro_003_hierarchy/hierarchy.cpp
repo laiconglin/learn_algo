@@ -161,6 +161,42 @@ void display_tree_hierarchy_double_loop(Node * top) {
         }
     }
 }
+
+/**
+ * max O(height) memory
+ *
+ */
+
+int is_first_node = 1;
+void display_tree_hierarchy_with_level(Node * top, int print_level, int cur_level) {
+    if(top == NULL) {
+        return;
+    }
+    if(cur_level == print_level) {
+        if(is_first_node == 0) {
+            cout<<" ";
+        } else {
+            is_first_node = 0;
+        }
+        cout<<top->val;
+        return;
+    }
+    if(top->left != NULL) {
+        display_tree_hierarchy_with_level(top->left, print_level, cur_level + 1);
+    }
+
+    if(top->right != NULL) {
+        display_tree_hierarchy_with_level(top->right, print_level, cur_level + 1);
+    }
+}
+void display_tree_hierarchy_O_h_memory(Node * top) {
+    int height = get_tree_height(top);
+    for(int i = 1; i <= height; i++) {
+        is_first_node = 1;
+        display_tree_hierarchy_with_level(top, i, 1);
+        cout<<endl;
+    }
+}
 int main() {
     //first level
     Node * top = generate_tree(1, 5);
@@ -169,6 +205,7 @@ int main() {
     //cout<<get_tree_node_number(top)<<endl;
     display_tree_hierarchy_simple(top);
     display_tree_hierarchy_double_loop(top);
+    display_tree_hierarchy_O_h_memory(top);
     destroy_tree(top);
     return 0;
 }
