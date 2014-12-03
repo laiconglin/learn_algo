@@ -27,7 +27,7 @@ class NodePro{
             level = lv;
         }
 };
-
+int MAX_TREE_NODE_VALUE = 20;
 /**
  * for example:
  * Node * top = generate_tree(1, 3);
@@ -44,8 +44,12 @@ class NodePro{
 Node * generate_tree(int topNodeVal, int high) {
     Node *top = new Node(topNodeVal);
     if(high > 1) {
-        top->left = generate_tree(2 * topNodeVal, high - 1);
-        top->right = generate_tree(2 * topNodeVal + 1, high - 1);
+        if(2 * topNodeVal <= MAX_TREE_NODE_VALUE) {
+            top->left = generate_tree(2 * topNodeVal, high - 1);
+        }
+        if((2 * topNodeVal + 1) <= MAX_TREE_NODE_VALUE) {
+            top->right = generate_tree(2 * topNodeVal + 1, high - 1);
+        }
     }
     return top;
 }
