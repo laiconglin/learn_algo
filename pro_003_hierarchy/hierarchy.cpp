@@ -112,6 +112,55 @@ void display_tree_hierarchy_simple(Node * top) {
     cout<<endl;
 }
 
+void display_tree_hierarchy_double_loop(Node * top) {
+    deque<Node*> queueNode;
+    queueNode.push_back(top);
+    Node *head;
+    Node *tail;
+    Node *cur;
+    while(queueNode.size() > 0) {
+        head = queueNode.front();
+        tail = queueNode.back();
+        cur = head;
+        if(cur != NULL) {
+            if(cur->left != NULL) {
+                queueNode.push_back(cur->left);
+            }
+            if(cur->right != NULL) {
+                queueNode.push_back(cur->right);
+            }
+            cout<<cur->val;
+            queueNode.pop_front();
+            if(head != tail) {
+                cur = queueNode.front();
+                while(cur != tail) {
+                    if(cur != NULL) {
+                        if(cur->left != NULL) {
+                            queueNode.push_back(cur->left);
+                        }
+                        if(cur->right != NULL) {
+                            queueNode.push_back(cur->right);
+                        }
+                    }
+                    cout<<" "<<cur->val;
+                    queueNode.pop_front();
+                    cur = queueNode.front();
+                }
+                if(cur != NULL) {
+                    if(cur->left != NULL) {
+                        queueNode.push_back(cur->left);
+                    }
+                    if(cur->right != NULL) {
+                        queueNode.push_back(cur->right);
+                    }
+                }
+                cout<<" "<<cur->val;
+                queueNode.pop_front();
+            }
+            cout<<endl;
+        }
+    }
+}
 int main() {
     //first level
     Node * top = generate_tree(1, 5);
@@ -119,6 +168,7 @@ int main() {
     //cout<<get_tree_height(top)<<endl;
     //cout<<get_tree_node_number(top)<<endl;
     display_tree_hierarchy_simple(top);
+    display_tree_hierarchy_double_loop(top);
     destroy_tree(top);
     return 0;
 }
