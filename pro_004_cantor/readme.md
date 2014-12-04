@@ -7,3 +7,22 @@
 我们以Z字形给上表的每一项编号。第一项是1/1，然后是1/2，2/1，3/1，2/2，…
 
 
+![cantor](https://raw.githubusercontent.com/laiconglin/learn_algo/master/pro_004_cantor/cantor.png "cantor")
+
+输入描述 Input Description
+
+整数N（1≤N≤10000000）
+
+输出描述 Output Description
+
+表中的第N项
+
+样例输入 Sample Input
+
+7
+
+样例输出 Sample Output
+
+1/4
+
+[原题，codevs, Cantor表](http://codevs.cn/problem/1083/)
